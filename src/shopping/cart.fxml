@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="494.0" style="-fx-background-color: none;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopping.CartController">
+   <children>
+      <AnchorPane layoutX="27.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: red;">
+         <children>
+            <Label layoutX="20.0" layoutY="-13.0" style="-fx-background-color: white;" text="Pick a Bagel">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="145.0" layoutY="43.0" text="Qty" />
+            <TextField fx:id="tfWhite" disable="true" layoutX="131.0" layoutY="71.0" onKeyTyped="#tfWhiteAction" prefHeight="25.0" prefWidth="59.0" promptText="0" />
+            <TextField fx:id="tfWholeWheat" disable="true" layoutX="131.0" layoutY="112.0" onKeyTyped="#tfWholeAction" prefHeight="25.0" prefWidth="59.0" promptText="0" />
+            <RadioButton fx:id="radioNone" layoutX="1.0" layoutY="43.0" mnemonicParsing="false" onAction="#radioNoneClicked" selected="true" text="none">
+               <toggleGroup>
+                  <ToggleGroup fx:id="bagel" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioWhite" layoutX="1.0" layoutY="75.0" mnemonicParsing="false" onAction="#radioWhiteClicked" text="White($1.25)" toggleGroup="$bagel" />
+            <RadioButton fx:id="radioWholeWheat" layoutX="1.0" layoutY="116.0" mnemonicParsing="false" onAction="#radioWholeClicked" text="Whole Wheat($1.50)" toggleGroup="$bagel" />
+            <Label fx:id="errorMessage" layoutX="11.0" layoutY="149.0" textFill="#fb0303" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorToppings" layoutX="27.0" layoutY="281.0" prefHeight="156.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: red;">
+         <children>
+            <Label layoutX="19.0" layoutY="-13.0" style="-fx-background-color: white;" text="Pick your Toppings">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="checkCream" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Cream Chesse($.50)" />
+            <CheckBox fx:id="checkButter" disable="true" layoutX="15.0" layoutY="35.0" mnemonicParsing="false" text="Butter($.25)" />
+            <CheckBox fx:id="checkBlue" disable="true" layoutX="15.0" layoutY="55.0" mnemonicParsing="false" text="Blueberry($.75)" />
+            <CheckBox fx:id="checkRaso" disable="true" layoutX="15.0" layoutY="78.0" mnemonicParsing="false" text="Rasoberry Jam($.75)" />
+            <CheckBox fx:id="checkPeach" disable="true" layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="Peach Jelly($.75)" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="269.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: red;">
+         <children>
+            <Label layoutX="11.0" layoutY="-13.0" style="-fx-background-color: white;" text="Want Coffee with That?">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="radioNoneCoffee" layoutX="1.0" layoutY="43.0" mnemonicParsing="false" onAction="#radioNoneCoffee" selected="true" text="None">
+               <toggleGroup>
+                  <ToggleGroup fx:id="coffee" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioRegular" disable="true" layoutX="1.0" layoutY="71.0" mnemonicParsing="false" onAction="#radioRegularClicked" text="Regular($1.25)" toggleGroup="$coffee" />
+            <RadioButton fx:id="radioCappacciano" disable="true" layoutX="2.0" layoutY="110.0" mnemonicParsing="false" onAction="#radioCappaccinoClicked" text="Cappaccino($2.00)" toggleGroup="$coffee" />
+            <RadioButton fx:id="radioCafe" disable="true" layoutX="2.0" layoutY="146.0" mnemonicParsing="false" onAction="#radioCafeClicked" text="Cafe Au Lait($1.75)" toggleGroup="$coffee" />
+            <Label layoutX="125.0" layoutY="43.0" text="Label" />
+            <TextField fx:id="tfRegular" disable="true" layoutX="124.0" layoutY="67.0" onKeyTyped="#tfRegularAction" prefHeight="25.0" prefWidth="69.0" promptText="0" />
+            <TextField fx:id="tfCappaccino" disable="true" layoutX="124.0" layoutY="105.0" onKeyTyped="#tfCappaccinoAction" prefHeight="25.0" prefWidth="69.0" promptText="0" />
+            <TextField fx:id="tfCafe" disable="true" layoutX="125.0" layoutY="142.0" onKeyTyped="#tfCafeAction" prefHeight="25.0" prefWidth="69.0" promptText="0" />
+            <Label fx:id="coffeeErrorMessage" layoutX="14.0" layoutY="167.0" textFill="#fd0303" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="269.0" layoutY="281.0" prefHeight="156.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: red;">
+         <children>
+            <Label layoutX="21.0" layoutY="38.0" text="Subtotal" />
+            <Label layoutX="21.0" layoutY="70.0" text="Sales Tax 13%" />
+            <Label layoutX="21.0" layoutY="101.0" text="Total Sale" />
+            <Label fx:id="label_Subtotal" layoutX="112.0" layoutY="38.0" />
+            <Label fx:id="label_sales" layoutX="112.0" layoutY="70.0" />
+            <Label fx:id="label_total" layoutX="112.0" layoutY="101.0" />
+            <Label layoutX="103.0" layoutY="38.0" text="\$" />
+            <Label layoutX="103.0" layoutY="69.0" text="\$" />
+            <Label layoutX="104.0" layoutY="99.0" text="\$" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="310.0" layoutY="269.0" style="-fx-background-color: white;" text="Price Summary">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_total" layoutX="108.0" layoutY="460.0" mnemonicParsing="false" onAction="#btntotal_click" text="Calculate Total" />
+      <Button fx:id="btn_reset" layoutX="216.0" layoutY="460.0" mnemonicParsing="false" onAction="#btnreset_click" prefHeight="25.0" prefWidth="84.0" text="Reset Form" />
+      <Button fx:id="btn_exit" layoutX="317.0" layoutY="460.0" mnemonicParsing="false" onAction="#btnexit_click" text="Exit System" />
+      <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
