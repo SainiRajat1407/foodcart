@@ -21,7 +21,7 @@ public class TextFieldMethods {
         try{
             if(!tfWhite.getText().isEmpty() ){
                 if(Integer.parseInt(tfWhite.getText()) <= 8&&
-                   Integer.parseInt(tfWhite.getText()) >=1){
+                   Integer.parseInt(tfWhite.getText()) >= 1){
                     radioRegular.setDisable(false);
                     radioCafe.setDisable(false);
                     radioCappaccino.setDisable(false);

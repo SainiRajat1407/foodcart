@@ -5,11 +5,15 @@
 package shopping;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -108,38 +112,33 @@ public class CartController  implements Initializable  {
         double subTotal = subTotal();
         double tax = calculateTax();
         double total = calculateTotal();
-        if(subTotal >=0 ){
-            label_Subtotal.setText(Double.toString( subTotal ) );
-        }
-        if(tax >= 0){
-            label_sales.setText(Double.toString(tax));
-        }
-        if(total >= 0 ){
-            label_total.setText(Double.toString( total  ));
-        }
+        
+        label_Subtotal.setText(Double.toString( subTotal ) );
+        label_sales.setText(Double.toString(tax));
+        label_total.setText(Double.toString( total  ));
     }
 
     @FXML
     private void btnreset_click(ActionEvent event) {
-        tfWhite.setText("");
-        tfWholeWheat.setText("");
-        tfRegular.setText("");
-        tfCappaccino.setText("");
-        tfCafe.setText("");
-        checkCream.setSelected(false);
-        checkButter.setSelected(false);
-        checkBlue.setSelected(false);
-        checkRaso.setSelected(false);
-        checkPeach.setSelected(false);
-        label_Subtotal.setText("");
-        label_sales.setText("");
-        label_total.setText("");
+        resetBagel();
+        resetPrice();
+        resetToppings();
+        resetCoffee();
+        
     }
 
     @FXML
     private void btnexit_click(ActionEvent event) {
         Stage window = (Stage) btn_exit.getScene().getWindow();
-        window.close();
+        Alert alertBoxExit = new Alert(AlertType.CONFIRMATION);
+        alertBoxExit.setTitle("Exit Window Confirmation");
+        alertBoxExit.setContentText("Do you want to exit the Application?");
+        //accessing the confirmation box result
+        
+        Optional<ButtonType> userAnswer = alertBoxExit.showAndWait();
+        if(userAnswer.get() == ButtonType.OK){
+            window.close();
+        }
     }
 
     public double bagelCost() {
@@ -185,27 +184,29 @@ public class CartController  implements Initializable  {
     *Reset  functions- resetBagel , resetToppings , resetCoffee ,resetPrice
     */
     public void resetBagel(){
-        tfWhite.setText("");
-        tfWholeWheat.setText("");
+        tfWhite.setText("0");
+        tfWholeWheat.setText("0");
 
     }
     public void resetCoffee(){
-        tfRegular.setText("");
-        tfCappaccino.setText("");
-        tfCafe.setText("");
+        tfRegular.setText("0");
+        tfCappaccino.setText("0");
+        tfCafe.setText("0");
 
     }
     public void resetToppings(){
+        
         checkCream.setSelected(false);
         checkButter.setSelected(false);
         checkRaso.setSelected(false);
         checkBlue.setSelected(false);
         checkPeach.setSelected(false);
+       
     }
     public void resetPrice(){
-        label_subtotal.setText("");
-        label_sales.setText("");
-        label_total.setText("");
+        label_subtotal.setText("0.0");
+        label_sales.setText("0.0");
+        label_total.setText("0.0");
     }
     
     @FXML
