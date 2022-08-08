@@ -21,7 +21,7 @@ public class TextFieldMethods {
         try{
             if(!tfWhite.getText().isEmpty() ){
                 if(Integer.parseInt(tfWhite.getText()) <= 8&&
-                   Integer.parseInt(tfWhite.getText()) >= 1){
+                   Integer.parseInt(tfWhite.getText()) > 0){
                     radioRegular.setDisable(false);
                     radioCafe.setDisable(false);
                     radioCappaccino.setDisable(false);
@@ -36,7 +36,7 @@ public class TextFieldMethods {
                     radioCafe.setDisable(true);
                     radioCappaccino.setDisable(true);
                 }
-                if(Integer.parseInt(tfWhite.getText()) <= 1){
+                if(Integer.parseInt(tfWhite.getText()) < 1){
                     errorMessage.setText("ENTER THE QUANTITY");
                     btn_total.setDisable(true);
                 }
@@ -54,7 +54,7 @@ public class TextFieldMethods {
         try{
             if(!tfWholeWheat.getText().isEmpty() ){
                 if(Integer.parseInt(tfWholeWheat.getText()) <= 8&&
-                        Integer.parseInt(tfWholeWheat.getText()) >=1 ){
+                        Integer.parseInt(tfWholeWheat.getText()) > 0 ){
                     radioRegular.setDisable(false);
                     radioCafe.setDisable(false);
                     radioCappaccino.setDisable(false);
@@ -67,7 +67,7 @@ public class TextFieldMethods {
                     radioRegular.setDisable(true);
                     radioCafe.setDisable(true);
                     radioCappaccino.setDisable(true);
-                }if(Integer.parseInt(tfWholeWheat.getText()) <= 1){
+                }if(Integer.parseInt(tfWholeWheat.getText()) < 1){
                     errorMessage.setText("ENTER THE QUANTITY");
                     btn_total.setDisable(true);
                 }
@@ -93,7 +93,7 @@ public class TextFieldMethods {
                     coffeeErrorMessage.setText("COFFEE LIMIT EXCEEDED!");
                     btn_total.setDisable(true);
                 }
-                if(Integer.parseInt(tfRegular.getText()) <= 1){
+                if(Integer.parseInt(tfRegular.getText()) < 1){
                     coffeeErrorMessage.setText("ENTER THE QUANTITY");
                     btn_total.setDisable(true);
                 }
@@ -118,7 +118,7 @@ public class TextFieldMethods {
                     coffeeErrorMessage.setText("COFFEE LIMIT EXCEEDED!");
                     btn_total.setDisable(true);
                 }
-                if(Integer.parseInt(tfCappaccino.getText()) <= 1){
+                if(Integer.parseInt(tfCappaccino.getText()) < 1){
                     coffeeErrorMessage.setText("ENTER THE QUANTITY");
                     btn_total.setDisable(true);
                 }
@@ -141,7 +141,7 @@ public class TextFieldMethods {
                     coffeeErrorMessage.setText("COFFEE LIMIT EXCEEDED!");
                     btn_total.setDisable(true);
                 }
-                if(Integer.parseInt(tfCafe.getText()) <= 1){
+                if(Integer.parseInt(tfCafe.getText()) < 1){
                     coffeeErrorMessage.setText("ENTER THE QUANTITY");
                     btn_total.setDisable(true);
                 }

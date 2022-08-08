@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author rajat
+ * @author rajat and Arpan
  */
 public class App extends Application{
 
@@ -25,19 +25,19 @@ public class App extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("cart.fxml"));
         Scene scene = new Scene(root);
         
-       //Adding a confirmarion on the wihndow close request
+       //Adding a confirmarion on the window close request
        
         stage.setOnCloseRequest(e -> {
             e.consume();
-        Alert alertBoxExit = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBoxExit.setTitle("Exit Window Confirmation");
-        alertBoxExit.setContentText("Do you want to exit the Application?");
-        //accessing the confirmation box result
-        
-        Optional<ButtonType> userAnswer = alertBoxExit.showAndWait();
-        if(userAnswer.get() == ButtonType.OK){
-            stage.close();
-        }});
+            Alert alertBoxExit = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBoxExit.setTitle("Exit Window Confirmation");
+            alertBoxExit.setContentText("Do you want to exit the Application?");
+            //accessing the confirmation box result
+
+            Optional<ButtonType> userAnswer = alertBoxExit.showAndWait();
+            if(userAnswer.get() == ButtonType.OK){
+                stage.close();
+            }});
         stage.setTitle("Sheridan shopping cart");
         stage.setScene(scene);
         stage.show();

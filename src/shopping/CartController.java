@@ -42,8 +42,6 @@ public class CartController  implements Initializable  {
     @FXML
     private TextField tfCafe;
     @FXML
-    private Label label_subtotal;
-    @FXML
     private Label label_sales;
     @FXML
     private Label label_total;
@@ -118,14 +116,7 @@ public class CartController  implements Initializable  {
         label_total.setText(Double.toString( total  ));
     }
 
-    @FXML
-    private void btnreset_click(ActionEvent event) {
-        resetBagel();
-        resetPrice();
-        resetToppings();
-        resetCoffee();
-        
-    }
+    
 
     @FXML
     private void btnexit_click(ActionEvent event) {
@@ -151,47 +142,72 @@ public class CartController  implements Initializable  {
      * @return the toppingCost
      */
     public  double toppingCost(){
-        double toppingCost = cal.toppingCostCalculator(checkCream, checkRaso, checkBlue,
-                                                       checkButter, checkPeach,tfWhite,
-                                                       tfWholeWheat);
+        double toppingCost = cal.toppingCostCalculator(radioWhite,radioWholeWheat, checkCream,
+                                                       checkRaso, checkBlue, checkButter, 
+                                                       checkPeach,tfWhite,tfWholeWheat);
        return toppingCost;
         }
+    /**
+     * @return the Coffee Cost
+     */
     public double coffeeCost() {
         double coffeeCost = cal.coffeeCostCalculator(radioCappacciano, radioNoneCoffee,
                                                      radioCafe, radioRegular, tfRegular,
                                                      tfCafe, tfCappaccino);
         return coffeeCost;
     }
+    /**
+     * @return the subTotal
+     */
     public double subTotal(){
         double subTotal = (bagelCost()+ coffeeCost()+toppingCost());
         double subTotalValue = Math.round(subTotal*100)/100.0;
         return subTotalValue;
         }
-    
+    /**
+     * @return the tax
+     */
     public double calculateTax(){
         double tax = (0.13) * subTotal();
         double taxValue = Math.round(tax*100)/100.0;
         return taxValue;
     }
-    
+    /**
+     * @return the total cost including sales tax
+     */
     public double calculateTotal(){
         double subTotal = subTotal();
         double total = subTotal + calculateTax();
         double totalValue = Math.round(total*100)/100.0;
         return totalValue;
     }
+    @FXML
+    private void btnreset_click(ActionEvent event) {
+        resetBagel();
+        resetToppings();
+        resetCoffee();
+        resetPrice();
+    }
     /*
     *Reset  functions- resetBagel , resetToppings , resetCoffee ,resetPrice
     */
     public void resetBagel(){
         tfWhite.setText("0");
+        tfWhite.setDisable(true);
         tfWholeWheat.setText("0");
+        tfWholeWheat.setDisable(true);
+        radioNone.setSelected(true);
+        
 
     }
     public void resetCoffee(){
         tfRegular.setText("0");
         tfCappaccino.setText("0");
         tfCafe.setText("0");
+        tfRegular.setDisable(true);
+        tfCappaccino.setDisable(true);
+        tfCafe.setDisable(true);
+        radioNoneCoffee.setSelected(true);
 
     }
     public void resetToppings(){
@@ -201,12 +217,17 @@ public class CartController  implements Initializable  {
         checkRaso.setSelected(false);
         checkBlue.setSelected(false);
         checkPeach.setSelected(false);
+        checkCream.setDisable(true);
+        checkButter.setDisable(true);
+        checkRaso.setDisable(true);
+        checkBlue.setDisable(true);
+        checkPeach.setDisable(true);
        
     }
     public void resetPrice(){
-        label_subtotal.setText("0.0");
-        label_sales.setText("0.0");
-        label_total.setText("0.0");
+        label_Subtotal.setText("0.00");
+        label_sales.setText("0.00");
+        label_total.setText("0.00");
     }
     
     @FXML
